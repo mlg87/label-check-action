@@ -1,5 +1,5 @@
 name: "Label Check Action"
-description: "An action that will add a check to your CI that fails if the PR is lacking the provided label. We use it as a way to indicate manual QA on a PR, but you could use it for anything really."
+description: "Check that passes/fails depending on the presence of a label on a PR."
 branding:
   color: green
   icon: check
