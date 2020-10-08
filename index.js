@@ -6,6 +6,9 @@ const core = require("@actions/core");
     const { payload } = github.context;
     const labelToWatchFor = core.getInput("label");
 
+    console.log("payload.pull_request", payload.pull_request);
+    console.log("labelToWatchFor", labelToWatchFor);
+
     if (payload.pull_request.labels.includes(labelToWatchFor)) {
       // do nothing, a run that goes to completion without catching is considered success in GH actions
       console.log(
