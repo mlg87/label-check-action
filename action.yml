@@ -4,7 +4,7 @@ branding:
   color: green
   icon: check
 inputs:
-  label:
+  label-name-to-watch-for:
     description: "The label to watch for. If this label has not been applied to the PR, this check will fail. If it has, it will pass."
     required: true
 runs:

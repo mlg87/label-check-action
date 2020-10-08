@@ -4,22 +4,26 @@ const core = require("@actions/core");
 (() => {
   try {
     const { payload } = github.context;
-    const labelToWatchFor = core.getInput("label");
+    const labelNameToWatchFor = core.getInput("label-name-to-watch-for");
 
-    console.log("payload.pull_request", payload.pull_request);
-    console.log("labelToWatchFor", labelToWatchFor);
+    let prHasLabel = false;
+    payload.pull_request.labels.forEach((label) => {
+      if (label.name === labelNameToWatchFor) {
+        prHasLabel = true;
+      }
+    });
 
-    if (payload.pull_request.labels.includes(labelToWatchFor)) {
+    if (prHasLabel) {
       // do nothing, a run that goes to completion without catching is considered success in GH actions
       console.log(
         "The PR is labeled by the label we care about::: ",
-        labelToWatchFor
+        labelNameToWatchFor
       );
       return;
     } else {
       core.setFailed(
         "The PR is not labeled with the label we care about::: ",
-        labelToWatchFor
+        labelNameToWatchFor
       );
     }
   } catch (error) {
